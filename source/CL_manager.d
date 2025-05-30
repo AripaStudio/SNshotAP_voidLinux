@@ -35,9 +35,37 @@ class CL_manager_package
         executeShell = new CL_executeShell_manager();
     }
 
-    public void check_Xfce()
+    public bool check_Xfce()
     {
+        try
+        {
+            auto command = "pgrep xfce";
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
 
+            if(exitCode != 0)
+            {
+                writefln("Error in Run Command :" , errorOutput);
+                return false;
+            }
+            if(output.empty)
+            {
+                writeln("you not Use XFCE?");
+                return false;
+            }
+
+            writeln("You Use XFCE");
+            return true;
+
+
+
+        }catch(Exception ex)
+        {
+            writeln("Error in Run Command : " , ex.msg);
+            return false;
+        }
     }
 
     public string check_package_xfce_screenshooter(string ErrorManager)
@@ -163,6 +191,11 @@ class CL_manager_package
                 writeln("unknown status (:-)");
             }
         }
+    }
+
+    void Manage_package()
+    {
+
     }
 
 }
