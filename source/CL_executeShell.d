@@ -2,6 +2,7 @@ module CL_executeShell;
 
 import std.stdio;
 import std.process;
+import std.string;
 
 
 
@@ -17,4 +18,28 @@ class CL_executeShell_manager
 		int exitCode = pipes.pid.wait();
 		return [to!string(exitCode), output, errorOutput];
 	}
+
+    void installPackage(string packageName, string sudoPassword)
+    {
+        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName], Redirect.stdin | Redirect.stdout | Redirect.stderr);
+        auto stdinPipe = process.stdin;
+        auto stdoutPipe = process.stdout;
+        auto stderrPipe = process.stderr;
+
+        writeln("Please enter your sudo password:");
+        string password = readln().strip();
+        stdinPipe.writeln(password);
+        stdinPipe.close();
+
+        string output = stdoutPipe.byLine.join("\n");
+        string errors = stderrPipe.byLine.join("\n");
+        int exitCode = process.wait();
+
+        writeln("Output:\n", output);
+        if (!errors.empty)
+        {
+            eprintln("Errors:\n", errors);
+        }
+        writeln("Exit Code: ", exitCode);
+    }
 }
