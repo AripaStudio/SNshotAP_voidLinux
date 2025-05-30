@@ -40,7 +40,7 @@ class CL_manager_package
 
     }
 
-    public string check_package_xfce_screenshooter()
+    public string check_package_xfce_screenshooter(string ErrorManager)
     {
         try
         {
@@ -85,8 +85,9 @@ class CL_manager_package
             }
             
             
-        }catch(Exception e)
+        }catch(Exception ex)
         {
+            ErrorManager = ex.msg;
             return "Error";
         }
 
@@ -94,7 +95,74 @@ class CL_manager_package
 
     public bool install_package_xfce_screenshooter()
     {
-
+        string errorManager ;
+        auto check_package = check_package_xfce_screenshooter(errorManager);
+        switch(check_package)
+        {
+            case "Error":
+            {
+                writeln("Errors : ");
+                writeln(errorManager);
+                break;
+            }
+            case "found":
+            {
+                break;
+            } 
+            case "Install":
+            {
+                writeln("Start Installing");
+                try
+                {
+                    executeShell.installPackage("xfce4-screenshooter");
+                }catch(Exception ex)
+                {
+                    writeln("Error in Installing Package : ");
+                    wirteln(ex.msg);
+                }
+                break;
+            }
+            case "exit":
+            {
+                writefln("Are you sure Want Exit Program?");
+                writeln("you must install this package for use this software ");
+                writeln("For Exit : (e) and for Download : d");
+                while(true)
+                {
+                    string input = readln().strip().tolower();
+                    switch(input)
+                    {
+                        case "e":
+                        {
+                            exit(1);
+                            break;
+                        }
+                        case "d":
+                        {
+                            writeln("Start Installing");
+                            try
+                            {
+                                executeShell.installPackage("xfce4-screenshooter");
+                            }catch(Exception ex)
+                            {
+                                writeln("Error in Installing Package : ");
+                                wirteln(ex.msg);
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            writeln("please enter , for exit (e) | for download (d)");
+                        }
+                    }
+                }
+                break;
+            }
+            default:
+            {
+                writeln("unknown status (:-)");
+            }
+        }
     }
 
 }

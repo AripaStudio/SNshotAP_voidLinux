@@ -19,7 +19,7 @@ class CL_executeShell_manager
 		return [to!string(exitCode), output, errorOutput];
 	}
 
-    void installPackage(string packageName, string sudoPassword)
+    void installPackage(string packageName)
     {
         auto process = spawnShell(["sudo", "xbps-install", "-S", packageName], Redirect.stdin | Redirect.stdout | Redirect.stderr);
         auto stdinPipe = process.stdin;
