@@ -43,7 +43,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); // تبدیل exitCode به int
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -59,7 +59,7 @@ class CLManagerScreenShot
 
     public void ScreenshotTimeN(int N)
     {
-        auto command = "xfce4-screenshooter -d "~to!string(N)~" -f"; // تبدیل N به string
+        auto command = "xfce4-screenshooter -d "~to!string(N)~" -f"; 
         if(N <= 0)
         {
             writeln("Input is Empth ");
@@ -171,7 +171,7 @@ class CLManagerPackage
         {
             auto command = "pgrep xfce";
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
 
@@ -204,7 +204,7 @@ class CLManagerPackage
         {
             auto command = "xbps-query -s xfce4-screenshooter";
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
 
