@@ -12,7 +12,6 @@ class CL_executeShell_manager
     string[] executeShellCommand(string command)
     {
         auto pipes = pipeShell(command, Redirect.stdout | Redirect.stderr);
-        // Explicitly convert char[] to string
         string output = to!string(pipes.stdout.byLine.map!(line => line.idup).join("\n"));
         string errorOutput = to!string(pipes.stderr.byLine.map!(line => line.idup).join("\n"));
         int exitCode = to!int(pipes.pid.wait());

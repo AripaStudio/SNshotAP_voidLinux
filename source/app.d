@@ -47,7 +47,7 @@ void main()
             stdout.write("Enter command: ");
             string rawInput = readln(); // Read the line
             string strippedInput = rawInput.strip(); // Strip whitespace
-            string input = strippedInput.tolower(); // Convert to lowercase
+            string input = std.string.toLower(strippedInput); // Convert to lowercase
             switch (input)
             {
                 case "ss":
