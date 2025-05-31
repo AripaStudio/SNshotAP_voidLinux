@@ -17,7 +17,7 @@ import std.conv;
  */
 
 
-struct importedStruct
+class importedClass
 {
     public CLManagerPackage mng_package;
     public CLManagerScreenShot mng_SnShot;
@@ -37,7 +37,7 @@ struct importedStruct
 
 void main()
 {
-    auto importedS = new importedStruct();
+    auto importedS = new importedClass();
     auto _mng_package_result = importedS.Manage_package();
     if (_mng_package_result)
     {

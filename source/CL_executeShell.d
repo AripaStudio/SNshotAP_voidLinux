@@ -3,7 +3,8 @@ module CL_executeShell;
 import std.stdio;
 import std.process;
 import std.string;
-
+import std.algorithm; 
+import std.conv;    
 
 
 class CL_executeShell_manager
@@ -15,13 +16,13 @@ class CL_executeShell_manager
 		auto pipes = pipeShell(command, Redirect.stdout | Redirect.stderr);		
 		string output = pipes.stdout.byLine.map!(line => line.idup).join("\n");
 		string errorOutput = pipes.stderr.byLine.map!(line => line.idup).join("\n");
-		int exitCode = pipes.pid.wait();
+		int exitCode = to!int(pipes.pid.wait());
 		return [to!string(exitCode), output, errorOutput];
 	}
 
     void installPackage(string packageName)
     {
-        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName], Redirect.stdin | Redirect.stdout | Redirect.stderr);
+        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName].join(" "), Redirect.stdin | Redirect.stdout | Redirect.stderr);
         auto stdinPipe = process.stdin;
         auto stdoutPipe = process.stdout;
         auto stderrPipe = process.stderr;

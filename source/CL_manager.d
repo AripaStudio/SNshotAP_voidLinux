@@ -5,6 +5,7 @@ import std.stdio;
 import CL_executeShell;
 import std.string;
 import core.stdc.stdlib;
+import std.conv;
 
 class CLManagerScreenShot
 {
@@ -22,7 +23,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -30,11 +31,6 @@ class CLManagerScreenShot
                 writefln("Error checking for Screenshot: %s", errorOutput);
                 return;
             }
-            
-            
-                
-            
-
         }catch(Exception ex)
         {
             writeln("Error : ScreenShot " , ex.msg);
@@ -47,7 +43,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); // تبدیل exitCode به int
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -55,21 +51,15 @@ class CLManagerScreenShot
                 writefln("Error checking for Screenshot: %s", errorOutput);
                 return;
             }
-            
-            
-                
-            
-
         }catch(Exception ex)
         {
             writeln("Error : ScreenShot " , ex.msg);
         }
-
     }
 
     public void ScreenshotTimeN(int N)
     {
-        auto command = "xfce4-screenshooter -d "~N~" -f";
+        auto command = "xfce4-screenshooter -d "~to!string(N)~" -f"; // تبدیل N به string
         if(N <= 0)
         {
             writeln("Input is Empth ");
@@ -79,7 +69,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -95,7 +85,7 @@ class CLManagerScreenShot
 
     public void ScreenshotTimeCN(int N)
     {
-        auto command = "xfce4-screenshooter -d "~N~" -c";
+        auto command = "xfce4-screenshooter -d "~to!string(N)~" -c"; 
         if(N <= 0)
         {
             writeln("Input is Empth ");
@@ -105,7 +95,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -125,7 +115,7 @@ class CLManagerScreenShot
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
@@ -144,7 +134,7 @@ class CLManagerScreenShot
          try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = result[0];
+            auto exitCode = to!int(result[0]); 
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
