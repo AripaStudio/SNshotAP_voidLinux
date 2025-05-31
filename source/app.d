@@ -69,7 +69,7 @@ void main()
                         {
                             int n = to!int(timeStr);
                             importedS.mng_SnShot.ScreenshotTimeN(n);
-                            writeln("Screenshot taken after "~n~" seconds and saved to the Pictures folder.");
+                            writeln("Screenshot taken after "~to!string(n)~" seconds and saved to the Pictures folder.");
                         }
                         catch (Exception e)
                         {
@@ -92,7 +92,7 @@ void main()
                         {
                             int n = to!int(timeStr);
                             importedS.mng_SnShot.ScreenshotTimeCN(n);
-                            writeln( "Screenshot taken after "~n~"seconds and saved to the clipboard.");
+                            writeln( "Screenshot taken after "~to!string(n)~"seconds and saved to the clipboard.");
                         }
                         catch (Exception e)
                         {

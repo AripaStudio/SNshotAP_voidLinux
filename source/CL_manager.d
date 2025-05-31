@@ -219,7 +219,8 @@ class CLManagerPackage
                 writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
                 while (true)
                 {
-                    string input = readln().tolower().strip();
+                    auto inputUser = strip(readln());
+                    auto input = inputUser.tolower();
                     if (input == "y")
                     {
                         return "Install";
@@ -285,7 +286,8 @@ class CLManagerPackage
                 writeln("Are you sure you want to exit? (e/d)");
                 while (true)
                 {
-                    string input = readln().strip().tolower();
+                    auto inputUser = strip(readln());
+                    auto input = inputUser.tolower();
                     switch (input)
                     {
                         case "e":
