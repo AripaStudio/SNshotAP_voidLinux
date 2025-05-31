@@ -319,7 +319,6 @@ class CLManagerPackage
                         if(loopExited) break;
                     }
                 }
-                break;
             }
             default:
             {
