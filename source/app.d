@@ -1,38 +1,47 @@
+module app;
+
 import std.stdio;
 import std.string;
 import core.stdc.stdlib;
-import CL_manager; 
+import CL_manager;
 import std.conv;
 
 
-    /** 
-     SNshotAP 
-     Programmer : khashayar Mobasheri (Abolfazl)
-     Studio : Aripa Studio (Aripa Pars Studio)
-     Start at : 2025-5-30;
-     (Iran) 1404-3-9;
-     end V1 at : null;
-     */
+/**
+ SNshotAP
+ Programmer : khashayar Mobasheri (Abolfazl)
+ Studio : Aripa Studio (Aripa Pars Studio)
+ Start at : 2025-5-30;
+ (Iran) 1404-3-9;
+ end V1 at : null;
+ */
 
 
-public CLManagerPackage mng_package;
-public CLManagerScreenShot mng_SnShot;
-this()
+struct importedStruct
 {
-    mng_package = new CLManagerPackage();
-    mng_SnShot = new CLManagerScreenShot();
+    public CLManagerPackage mng_package;
+    public CLManagerScreenShot mng_SnShot;
+
+    this()
+    {
+        mng_package = new CLManagerPackage();
+        mng_SnShot = new CLManagerScreenShot();
+    }
+
+    bool Manage_package()
+    {
+        return mng_package.Manage_package();
+    }
 }
 
-     
-     
+
 void main()
 {
-    auto mng_package = new CLManagerPackage();
-    auto _mng_package_result = mng_package.Manage_package();
+    auto importedS = new importedStruct();
+    auto _mng_package_result = importedS.Manage_package();
     if (_mng_package_result)
     {
         Help_menu();
-        auto screenshotManager = new CLManagerScreenShot();
         while (true)
         {
             stdout.write("Enter command: ");
@@ -41,13 +50,13 @@ void main()
             {
                 case "ss":
                 {
-                    screenshotManager.ScreenshotSS();
+                    importedS.mng_SnShot.ScreenshotSS();
                     writeln("Screenshot saved to the Pictures folder.");
                     break;
                 }
                 case "sc":
                 {
-                    screenshotManager.ScreenshotSC();
+                    importedS.mng_SnShot.ScreenshotSC();
                     writeln("Screenshot saved to the clipboard.");
                     break;
                 }
@@ -59,7 +68,7 @@ void main()
                         try
                         {
                             int n = to!int(timeStr);
-                            screenshotManager.ScreenshotTimeN(n);
+                            importedS.mng_SnShot.ScreenshotTimeN(n);
                             writeln("Screenshot taken after "~n~" seconds and saved to the Pictures folder.");
                         }
                         catch (Exception e)
@@ -74,7 +83,7 @@ void main()
                     }
                     break;
                 }
-                case "cn": 
+                case "cn":
                 {
                     if(input.length > 1)
                     {
@@ -82,7 +91,7 @@ void main()
                          try
                         {
                             int n = to!int(timeStr);
-                            screenshotManager.ScreenshotTimeCN(n);
+                            importedS.mng_SnShot.ScreenshotTimeCN(n);
                             writeln( "Screenshot taken after "~n~"seconds and saved to the clipboard.");
                         }
                         catch (Exception e)
@@ -98,13 +107,13 @@ void main()
                 }
                 case "sw":
                 {
-                    screenshotManager.ScreenshotSW();
+                    importedS.mng_SnShot.ScreenshotSW();
                     writeln("Taking screenshot of the active window (you might be prompted to save).");
                     break;
                 }
                 case "sr":
                 {
-                    screenshotManager.ScreenshotSR();
+                    importedS.mng_SnShot.ScreenshotSR();
                     writeln("Select the region to screenshot (you might be prompted to save).");
                     break;
                 }

@@ -1,3 +1,10 @@
 {
-	"name": "s-nshot-a-p"
+	
+		"name": "s-nshot-a-p",
+		"description": "a simple app for Screenshot with xfce",
+		"authors": ["AripaParsStudio(khashayar mobasheri(abolfazl))"],
+		"dependencies": {},
+		"targetType": "executable"
+	  
+	  
 }
