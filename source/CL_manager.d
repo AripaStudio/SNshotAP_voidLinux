@@ -8,20 +8,32 @@ import core.stdc.stdlib;
 
 class CL_manager_ScreenShot
 {
-    public void ScreenShot()
+    public void Screenshot()
     {
 
     }
 
-    public void ScreenShot_Copy()
+    public void Screenshot_Copy()
     {
 
     }
 
-    public void ScreenShot_Save()
+    public void Screenshot_Save()
     {
 
     }
+
+    public void Screenshot_TimerSecend()
+    {
+
+    }
+
+    public void Screenshot_copy_TimerSecend()
+    {
+
+    }
+
+    
 
     
 }
