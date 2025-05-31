@@ -11,9 +11,10 @@ import std.conv;
  SNshotAP
  Programmer : khashayar Mobasheri (Abolfazl)
  Studio : Aripa Studio (Aripa Pars Studio)
+ V1.0.1
  Start at : 2025-5-30;
  (Iran) 1404-3-9;
- end V1 at : null;
+ end V1.0.0 at : 2025-5-31;
  */
 
 
@@ -150,7 +151,7 @@ void main()
 
 void Help_menu()
 {
-    writeln("Welcome to my Program (V1.0.0)");
+    writeln("Welcome to my Program (V1.0.1)");
     writeln("This software uses the MIT license.");
     writeln("Aripa Studio (Khashayar Mobasheri)");
     writeln("");
