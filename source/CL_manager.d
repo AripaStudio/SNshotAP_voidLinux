@@ -6,41 +6,156 @@ import CL_executeShell;
 import std.string;
 import core.stdc.stdlib;
 
-class CL_manager_ScreenShot
+class CLManagerScreenShot
 {
-    public void ScreenshotـSS()
+
+    CL_executeShell_manager executeShell;
+    this()
+    {
+        executeShell = new CL_executeShell_manager();
+    }
+
+
+    public void ScreenshotSS()
     {
         auto command = "xfce4-screenshooter -f";
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+            
+            
+                
+            
 
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
     }
 
-    public void Screenshot_SC()
+    public void ScreenshotSC()
     {
         auto command = "xfce4-screenshooter -c";
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+            
+            
+                
+            
+
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
 
     }
 
-    public void Screenshot_TimeN(int N)
+    public void ScreenshotTimeN(int N)
     {
         auto command = "xfce4-screenshooter -d "~N~" -f";
-
+        if(N <= 0)
+        {
+            writeln("Input is Empth ");
+            writeln("<N> = 1S in Default");
+            N = 1;
+        }
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
     }
 
-    public void Screenshot_TimeCN(int N)
+    public void ScreenshotTimeCN(int N)
     {
         auto command = "xfce4-screenshooter -d "~N~" -c";
-        
+        if(N <= 0)
+        {
+            writeln("Input is Empth ");
+            writeln("<N> = 1S in Default");
+            N = 1;
+        }
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
     }
 
-    public void Screenshot_SW()
+    public void ScreenshotSW()
     {
         auto command = "xfce4-screenshooter -w -s";
-        
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
     }
-    public void Screenshot_SR()
+    public void ScreenshotSR()
     {
         auto command = "xfce4-screenshooter -r -s";
-        
+         try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = result[0];
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error checking for Screenshot: %s", errorOutput);
+                return;
+            }
+        }catch(Exception ex)
+        {
+            writeln("Error : ScreenShot " , ex.msg);
+        }
     }
 
 
@@ -51,7 +166,7 @@ class CL_manager_ScreenShot
     
 }
 
-class CL_manager_package
+class CLManagerPackage
 {
 
     CL_executeShell_manager executeShell;
@@ -72,118 +187,116 @@ class CL_manager_package
 
             if(exitCode != 0)
             {
-                writefln("Error in Run Command :" , errorOutput);
+                writefln("Error checking for XFCE: %s", errorOutput);
                 return false;
             }
             if(output.empty)
             {
-                writeln("you not Use XFCE?");
+                writeln("It seems you are not using XFCE.");
                 return false;
             }
 
-            writeln("You Use XFCE");
+            writeln("You are using XFCE.");
             return true;
 
 
 
         }catch(Exception ex)
         {
-            writeln("Error in Run Command : " , ex.msg);
+             writeln("Error in checking XFCE: %s", ex.msg);
             return false;
         }
     }
 
-    public string check_package_xfce_screenshooter(string ErrorManager)
+     public string check_package_xfce_screenshooter()
     {
         try
         {
-
             auto command = "xbps-query -s xfce4-screenshooter";
             auto result = executeShell.executeShellCommand(command);
             auto exitCode = result[0];
             auto output = result[1];
             auto errorOutput = result[2];
-            if(exitCode != 0)
+
+            if (exitCode != 0)
             {
-                writefln("Error in Run Command :" , errorOutput);
+                writefln("Error checking for xfce4-screenshooter: %s", errorOutput);
                 return "Error";
             }
-            if(output.empty)
+            if (output.empty)
             {
-                writeln("You not have this package in Your System ");
-                writeln("To use this software, you must install this package. Do you want to install it? ");
-                writeln("for Install : (Y/y) for Exit : (N/n)");
-                while(true)
+                writeln("The 'xfce4-screenshooter' package is not installed.");
+                writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
+                while (true)
                 {
                     string input = readln().tolower().strip();
-                    if(input == "y")
+                    if (input == "y")
                     {
                         return "Install";
-                    }else if(input == "n")
+                    }
+                    else if (input == "n")
                     {
                         return "exit";
-                    }else if(input == "help")
+                    }
+                    else if (input == "help")
                     {
-                        writeln("You not have this package in Your System ");
-                        writeln("To use this software, you must install this package. Do you want to install it? ");
-                        writeln("for Install : (Y/y) for Exit : (N/n)");
-                    }else
+                        writeln("The 'xfce4-screenshooter' package is not installed.");
+                        writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
+                    }
+                    else
                     {
-                        writeln("Please Enter : (y) or (n) for help you can type : (help)");
+                        writeln("Please enter 'y' for install or 'n' for exit. For help, type 'help'.");
                     }
                 }
-            }else
+            }
+            else
             {
                 return "found";
             }
-            
-            
-        }catch(Exception ex)
+        }
+        catch (Exception ex)
         {
-            ErrorManager = ex.msg;
+            writeln("Error in checking package: %s", ex.msg);
             return "Error";
         }
-
     }
 
     public void install_package_xfce_screenshooter()
     {
-        string errorManager ;
-        auto check_package = check_package_xfce_screenshooter(errorManager);
-        switch(check_package)
+        auto check_package = check_package_xfce_screenshooter();
+        switch (check_package)
         {
             case "Error":
             {
-                writeln("Errors : ");
-                writeln(errorManager);
+                writeln("An error occurred while checking the package.");
                 break;
             }
             case "found":
             {
                 break;
-            } 
+            }
             case "Install":
             {
-                writeln("Start Installing");
+                writeln("Starting installation of xfce4-screenshooter...");
                 try
                 {
                     executeShell.installPackage("xfce4-screenshooter");
-                }catch(Exception ex)
+                    writeln("xfce4-screenshooter installed successfully.");
+                }
+                catch (Exception ex)
                 {
-                    writeln("Error in Installing Package : ");
-                    wirteln(ex.msg);
+                    writeln("Error installing package: %s", ex.msg);
                 }
                 break;
             }
             case "exit":
             {
-                writefln("Are you sure Want Exit Program?");
-                writeln("you must install this package for use this software ");
-                writeln("For Exit : (e) and for Download : d");
-                while(true)
+                writeln("To use this program, 'xfce4-screenshooter' is required.");
+                writeln("Are you sure you want to exit? (e/d)");
+                while (true)
                 {
                     string input = readln().strip().tolower();
-                    switch(input)
+                    switch (input)
                     {
                         case "e":
                         {
@@ -192,20 +305,21 @@ class CL_manager_package
                         }
                         case "d":
                         {
-                            writeln("Start Installing");
+                            writeln("Starting installation of xfce4-screenshooter...");
                             try
                             {
                                 executeShell.installPackage("xfce4-screenshooter");
-                            }catch(Exception ex)
+                                writeln("xfce4-screenshooter installed successfully.");
+                            }
+                            catch (Exception ex)
                             {
-                                writeln("Error in Installing Package : ");
-                                wirteln(ex.msg);
+                                writeln("Error installing package: %s", ex.msg);
                             }
                             break;
                         }
                         default:
                         {
-                            writeln("please enter , for exit (e) | for download (d)");
+                            writeln("Please enter 'e' to exit or 'd' to download.");
                         }
                     }
                 }
@@ -213,21 +327,22 @@ class CL_manager_package
             }
             default:
             {
-                writeln("unknown status (:-)");
+                writeln("Unknown status.");
             }
         }
     }
 
-
-    bool Manage_package()
+    public bool Manage_package()
     {
-        auto chekc_xfce = check_Xfce();
-        if(check_Xfce)
+        auto check_xfce = check_Xfce();
+        if (check_xfce)
         {
-            auto chekc_install = install_package_xfce_screenshooter();
-        }else
+            install_package_xfce_screenshooter();
+            return true;
+        }
+        else
         {
-            writeln("For use this program you must Using XFCE");
+            writeln("This program requires XFCE to run.");
             return false;
         }
     }

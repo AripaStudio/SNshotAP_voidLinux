@@ -10,13 +10,31 @@ import CL_manager;
      (Iran) 1404-3-9;
      end V1 at : null;
      */
+
+
+public CLManagerPackage mng_package;
+public CLManagerScreenShot mng_SnShot;
+this()
+{
+    mng_package = new CLManagerPackage();
+    mng_SnShot = new CLManagerScreenShot();
+}
+
+     
      
 void main()
 {
-    Help_menu();
-    while(true)
+    
+    auto _mng_package = mng_package.Manage_package();
+    if(_mng_package)
     {
-
+        Help_menu();
+        while(true)
+        {
+            
+        }
+    }else {
+        writeln("manager package is false");
     }
 }
 
