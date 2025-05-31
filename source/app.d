@@ -18,6 +18,11 @@ import std.conv;
  */
 
 
+ //  دارای کار نکردن بعضی از بخش ها 
+ // باید رفع کنم 
+ // بریم استراحت خخ
+
+
 class importedClass
 {
     public CLManagerPackage mng_package;
