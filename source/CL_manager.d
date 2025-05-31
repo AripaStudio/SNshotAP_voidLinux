@@ -8,30 +8,43 @@ import core.stdc.stdlib;
 
 class CL_manager_ScreenShot
 {
-    public void Screenshot()
+    public void ScreenshotـSS()
     {
+        auto command = "xfce4-screenshooter -f";
+
+    }
+
+    public void Screenshot_SC()
+    {
+        auto command = "xfce4-screenshooter -c";
+
+    }
+
+    public void Screenshot_TimeN(int N)
+    {
+        auto command = "xfce4-screenshooter -d "~N~" -f";
+
+    }
+
+    public void Screenshot_TimeCN(int N)
+    {
+        auto command = "xfce4-screenshooter -d "~N~" -c";
         
     }
 
-    public void Screenshot_Copy()
+    public void Screenshot_SW()
     {
-
+        auto command = "xfce4-screenshooter -w -s";
+        
+    }
+    public void Screenshot_SR()
+    {
+        auto command = "xfce4-screenshooter -r -s";
+        
     }
 
-    public void Screenshot_Save()
-    {
 
-    }
 
-    public void Screenshot_TimerSecend()
-    {
-
-    }
-
-    public void Screenshot_copy_TimerSecend()
-    {
-
-    }
 
     
 
@@ -133,7 +146,7 @@ class CL_manager_package
 
     }
 
-    public bool install_package_xfce_screenshooter()
+    public void install_package_xfce_screenshooter()
     {
         string errorManager ;
         auto check_package = check_package_xfce_screenshooter(errorManager);
@@ -206,13 +219,17 @@ class CL_manager_package
     }
 
 
-//  کامل کردن این متد 
-// و کامل کردن کلاس بالایی 
-// و در اخر هم فراخوانیش در متد اصلی 
-// و انتشار نسخه اولیه 
-    void Manage_package()
+    bool Manage_package()
     {
-
+        auto chekc_xfce = check_Xfce();
+        if(check_Xfce)
+        {
+            auto chekc_install = install_package_xfce_screenshooter();
+        }else
+        {
+            writeln("For use this program you must Using XFCE");
+            return false;
+        }
     }
 
 }
