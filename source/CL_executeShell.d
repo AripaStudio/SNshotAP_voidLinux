@@ -22,7 +22,11 @@ class CL_executeShell_manager
 
     void installPackage(string packageName)
     {
-        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName].join(" "), Redirect.stdin | Redirect.stdout | Redirect.stderr);
+        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName].join(" "),
+                        std.process.stdin,
+                        std.process.stdout,
+                        std.process.stderr);
+
         auto stdinPipe = process.stdin;
         auto stdoutPipe = process.stdout;
         auto stderrPipe = process.stderr;
