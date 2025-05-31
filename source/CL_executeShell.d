@@ -11,11 +11,11 @@ class CL_executeShell_manager
     // for run command :
     string[] executeShellCommand(string command)
     {
-        // pipeShell returns a Pipes struct, which has stdin, stdout, stderr, and pid
         auto pipes = pipeShell(command, Redirect.stdout | Redirect.stderr);
-        string output = pipes.stdout.byLine.map!(line => line.idup).join("\n");
-        string errorOutput = pipes.stderr.byLine.map!(line => line.idup).join("\n");
-        int exitCode = to!int(pipes.pid.wait()); // Wait for the process to finish
+        // Explicitly convert char[] to string
+        string output = to!string(pipes.stdout.byLine.map!(line => line.idup).join("\n"));
+        string errorOutput = to!string(pipes.stderr.byLine.map!(line => line.idup).join("\n"));
+        int exitCode = to!int(pipes.pid.wait());
         return [to!string(exitCode), output, errorOutput];
     }
 
@@ -34,8 +34,8 @@ class CL_executeShell_manager
         stdinPipe.writeln(password); // Write password to stdin pipe
         stdinPipe.close();           // Close stdin pipe to signal end of input
 
-        string output = stdoutPipe.byLine.join("\n");
-        string errors = stderrPipe.byLine.join("\n");
+        string output = to!string(stdoutPipe.byLine.join("\n"));
+        string errors = to!string(stderrPipe.byLine.join("\n"));
         int exitCode = pipes.pid.wait(); // Wait for the process to finish and get exit code
 
         writeln("Output:\n", output);
