@@ -219,7 +219,9 @@ class CLManagerPackage
                 writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
                 while (true)
                 {
-                   string input = strip(readln()).tolower();
+                   string rawInput = readln(); // Read the line
+                    string strippedInput = rawInput.strip(); // Strip whitespace
+                    string input = strippedInput.tolower(); // Convert to lowercase
                     if (input == "y")
                     {
                         return "Install";
@@ -283,14 +285,17 @@ class CLManagerPackage
             {
                 writeln("To use this program, 'xfce4-screenshooter' is required.");
                 writeln("Are you sure you want to exit? (e/d)");
+                bool loopExited = false;
                 while (true)
                 {
-                    string input = strip(readln()).tolower();
+                    string rawInput = readln(); // Read the line
+                    string strippedInput = rawInput.strip(); // Strip whitespace
+                    string input = strippedInput.tolower(); // Convert to lowercase
                     switch (input)
                     {
                         case "e":
                         {
-                            break;
+                            exit(1);
                         }
                         case "d":
                         {
@@ -299,6 +304,7 @@ class CLManagerPackage
                             {
                                 executeShell.installPackage("xfce4-screenshooter");
                                 writeln("xfce4-screenshooter installed successfully.");
+                                loopExited = true;
                             }
                             catch (Exception ex)
                             {
@@ -309,6 +315,10 @@ class CLManagerPackage
                         default:
                         {
                             writeln("Please enter 'e' to exit or 'd' to download.");
+                        }
+                        if(loopExited)
+                        {
+                            break;
                         }
                     }
                 }
