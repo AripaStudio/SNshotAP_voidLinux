@@ -45,7 +45,7 @@ void main()
         while (true)
         {
             stdout.write("Enter command: ");
-            string input = readln().tolower().strip();
+            string input = strip(readln()).tolower();
             switch (input)
             {
                 case "ss":

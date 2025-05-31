@@ -22,14 +22,14 @@ class CL_executeShell_manager
 
     void installPackage(string packageName)
     {
-        auto process = spawnShell(["sudo", "xbps-install", "-S", packageName].join(" "),
-                        std.process.stdin,
-                        std.process.stdout,
-                        std.process.stderr);
+        auto processAuto = spawnShell(["sudo", "xbps-install", "-S", packageName],
+                                  stdin = Process.StdIO.inheritPipe,
+                                  stdout = Process.StdIO.inheritPipe,
+                                  stderr = Process.StdIO.inheritPipe);
 
-        auto stdinPipe = process.stdin;
-        auto stdoutPipe = process.stdout;
-        auto stderrPipe = process.stderr;
+        auto stdinPipe = processAuto.stdin;
+        auto stdoutPipe = processAuto.stdout;
+        auto stderrPipe = processAuto.stderr;
 
         writeln("Please enter your sudo password:");
         string password = readln().strip();
@@ -43,7 +43,7 @@ class CL_executeShell_manager
         writeln("Output:\n", output);
         if (!errors.empty)
         {
-            eprintln("Errors:\n", errors);
+            stderr.writeln("Errors:\n", errors);
         }
         writeln("Exit Code: ", exitCode);
     }
