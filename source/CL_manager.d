@@ -10,7 +10,7 @@ class CL_manager_ScreenShot
 {
     public void Screenshot()
     {
-
+        
     }
 
     public void Screenshot_Copy()
