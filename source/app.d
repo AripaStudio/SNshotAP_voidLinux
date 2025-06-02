@@ -123,6 +123,11 @@ void main()
                     Help_menu();
                     break;
                 }
+                case "g":
+                {
+                    importedS.mng_SnShot.OpenScreenshotGui();
+                    break;
+                }
                 case "exit":
                 {
                     writeln("Exiting program.");
@@ -149,12 +154,16 @@ void Help_menu()
     writeln("Aripa Studio (Khashayar Mobasheri)");
     writeln("");
     writeln("Commands:");
+    writeln("If you want Open GUI xfce-screenshooter ?");
+    writeln("you can type for this : G");
+    writeln("");
+    writeln("other Commands : ");
     writeln("  SS: Take a full-screen screenshot and save it (defaults to the Pictures folder).");
     writeln("  SC: Take a full-screen screenshot and save it to the clipboard.");
     writeln("  N: Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).");
-    writeln(" example N : n5");
+    writeln(" example N : enter n and wait for secend and type a number");
     writeln("  CN: Take a full-screen screenshot after N seconds and save it to the clipboard.");
-    writeln("example CN : cn5");
+    writeln("example CN : enter cn and wait for secend and type a number");
     writeln("  SW: Take a screenshot of the active window.");
     writeln("  SR: Take a screenshot of a selected region.");
     writeln("  H or Help: Show this help menu.");

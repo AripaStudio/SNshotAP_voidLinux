@@ -15,7 +15,26 @@ class CLManagerScreenShot
     {
         executeShell = new CL_executeShell_manager();
     }
-
+    public void OpenScreenshotGui()
+    {
+        auto command = "xfce4-screenshooter";
+        try
+        {
+            auto result = executeShell.executeShellCommand(command);
+            auto exitCode = to!int(result[0]);
+            auto output = result[1];
+            auto errorOutput = result[2];
+            if(exitCode != 0)
+            {
+                writefln("Error opening screenshot GUI: %s", errorOutput);
+                return;
+            }
+        }
+        catch(Exception ex)
+        {
+            writeln("Error opening screenshot GUI: ", ex.msg);
+        }
+    }
 
     public void ScreenshotSS()
     {
