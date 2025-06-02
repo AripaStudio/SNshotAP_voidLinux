@@ -16,7 +16,7 @@ import std.conv;
  Start at : 2025-5-30;
  (Iran) 1404-3-9;
  end V1.0.0 at : 2025-5-31;
- V1.0.2 : 
+ V1.0.2 at : 2025-6-2;
  */
 
 
@@ -150,7 +150,7 @@ void main()
 
 void Help_menu()
 {
-     writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.1)");
+     writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.2)");
     writeln(Cl_GLV.tMAGENTA, "This software uses the MIT license.");
     writeln("Aripa Studio (Khashayar Mobasheri)");
     writeln("", Cl_GLV.tRESET);
