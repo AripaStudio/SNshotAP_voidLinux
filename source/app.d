@@ -15,9 +15,10 @@ import std.conv;
  Start at : 2025-5-30;
  (Iran) 1404-3-9;
  end V1.0.0 at : 2025-5-31;
+ V1.0.2 : 
  */
 
-// berim baray rafe kara haha
+
 
 
 class importedClass
@@ -67,33 +68,27 @@ void main()
                 }
                 case "n":
                 {
-                    if (input.length > 1)
-                    {
-                        string timeStr = input[1 .. $];
+                    writeln("Please Enter a Number For Timer Screenshot ");
+                    string inputN = readln().strip();
                         try
                         {
-                            int n = to!int(timeStr);
+                            int n = to!int(inputN);
                             importedS.mng_SnShot.ScreenshotTimeN(n);
                             writeln("Screenshot taken after "~to!string(n)~" seconds and saved to the Pictures folder.");
                         }
                         catch (Exception e)
                         {
-                            writeln("Invalid timer value: " ~ timeStr);
-                            writeln("Please enter 'n' followed by the number of seconds (e.g., n5).");
+                            writeln("Invalid timer value: " ~ inputN);
+                            writeln("Please enter n and enter a number <n>");
                         }
-                    }
-                    else
-                    {
-                        writeln("Please enter the timer duration in seconds after 'n' (e.g., n5).");
-                    }
+                    
                     break;
                 }
                 case "cn":
                 {
-                    if(input.length > 1)
-                    {
-                        string timeStr = input[1 .. $];
-                         try
+                    writeln("Please Enter a Number For Timer Screenshot ");
+                    string inputN = readln().strip();
+                        try
                         {
                             int n = to!int(timeStr);
                             importedS.mng_SnShot.ScreenshotTimeCN(n);
@@ -101,13 +96,9 @@ void main()
                         }
                         catch (Exception e)
                         {
-                            writeln("Invalid timer value: " ~ timeStr);
-                            writeln("Please enter 'n' followed by the number of seconds (e.g., n5).");
-                        }
-                    }else
-                    {
-                        writeln("Please enter the timer duration in seconds after 'n' (e.g., n5).");
-                    }
+                            writeln("Invalid timer value: " ~ inputN);
+                            writeln("Please enter n and enter a number <n>");
+                        }                     
                     break;
                 }
                 case "sw":
