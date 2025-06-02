@@ -4,6 +4,7 @@ import std.stdio;
 import std.string;
 import core.stdc.stdlib;
 import CL_manager;
+import CL_GLV;
 import std.conv;
 
 
@@ -149,23 +150,23 @@ void main()
 
 void Help_menu()
 {
-    writeln("Welcome to my Program (V1.0.1)");
+    writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.1)");
     writeln("This software uses the MIT license.");
     writeln("Aripa Studio (Khashayar Mobasheri)");
-    writeln("");
+    writeln("", Cl_GLV.tRESET);
     writeln("Commands:");
     writeln("If you want Open GUI xfce-screenshooter ?");
-    writeln("you can type for this : G");
+    writeln("you can type for this : ", Cl_GLV.tGREEN, "G", Cl_GLV.tRESET);
     writeln("");
     writeln("other Commands : ");
-    writeln("  SS: Take a full-screen screenshot and save it (defaults to the Pictures folder).");
-    writeln("  SC: Take a full-screen screenshot and save it to the clipboard.");
-    writeln("  N: Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).");
+    writeln("  ", Cl_GLV.tGREEN, "SS", Cl_GLV.tRESET, ": Take a full-screen screenshot and save it (defaults to the Pictures folder).");
+    writeln("  ", Cl_GLV.tGREEN, "SC", Cl_GLV.tRESET, ": Take a full-screen screenshot and save it to the clipboard.");
+    writeln("  ", Cl_GLV.tGREEN, "N <seconds>", Cl_GLV.tRESET, ": Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).");
     writeln(" example N : enter n and wait for secend and type a number");
-    writeln("  CN: Take a full-screen screenshot after N seconds and save it to the clipboard.");
+    writeln("  ", Cl_GLV.tGREEN, "CN <seconds>", Cl_GLV.tRESET, ": Take a full-screen screenshot after N seconds and save it to the clipboard.");
     writeln("example CN : enter cn and wait for secend and type a number");
-    writeln("  SW: Take a screenshot of the active window.");
-    writeln("  SR: Take a screenshot of a selected region.");
-    writeln("  H or Help: Show this help menu.");
-    writeln("  exit: Exit the program.");
+    writeln("  ", Cl_GLV.tGREEN, "SW", Cl_GLV.tRESET, ": Take a screenshot of the active window.");
+    writeln("  ", Cl_GLV.tGREEN, "SR", Cl_GLV.tRESET, ": Take a screenshot of a selected region.");
+    writeln("  ", Cl_GLV.tGREEN, "H", Cl_GLV.tRESET, " or ", Cl_GLV.tGREEN, "Help", Cl_GLV.tRESET, ": Show this help menu.");
+    writeln("  ", Cl_GLV.tGREEN, "exit", Cl_GLV.tRESET, ": Exit the program.");
 }
