@@ -150,23 +150,23 @@ void main()
 
 void Help_menu()
 {
-    writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.1)");
-    writeln("This software uses the MIT license.");
+     writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.1)");
+    writeln(Cl_GLV.tYELLOW, "This software uses the MIT license.");
     writeln("Aripa Studio (Khashayar Mobasheri)");
     writeln("", Cl_GLV.tRESET);
-    writeln("Commands:");
+    writeln(Cl_GLV.tYELLOW, "Commands:");
     writeln("If you want Open GUI xfce-screenshooter ?");
     writeln("you can type for this : ", Cl_GLV.tGREEN, "G", Cl_GLV.tRESET);
     writeln("");
     writeln("other Commands : ");
-    writeln("  ", Cl_GLV.tGREEN, "SS", Cl_GLV.tRESET, ": Take a full-screen screenshot and save it (defaults to the Pictures folder).");
-    writeln("  ", Cl_GLV.tGREEN, "SC", Cl_GLV.tRESET, ": Take a full-screen screenshot and save it to the clipboard.");
-    writeln("  ", Cl_GLV.tGREEN, "N <seconds>", Cl_GLV.tRESET, ": Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).");
-    writeln(" example N : enter n and wait for secend and type a number");
-    writeln("  ", Cl_GLV.tGREEN, "CN <seconds>", Cl_GLV.tRESET, ": Take a full-screen screenshot after N seconds and save it to the clipboard.");
-    writeln("example CN : enter cn and wait for secend and type a number");
-    writeln("  ", Cl_GLV.tGREEN, "SW", Cl_GLV.tRESET, ": Take a screenshot of the active window.");
-    writeln("  ", Cl_GLV.tGREEN, "SR", Cl_GLV.tRESET, ": Take a screenshot of a selected region.");
-    writeln("  ", Cl_GLV.tGREEN, "H", Cl_GLV.tRESET, " or ", Cl_GLV.tGREEN, "Help", Cl_GLV.tRESET, ": Show this help menu.");
-    writeln("  ", Cl_GLV.tGREEN, "exit", Cl_GLV.tRESET, ": Exit the program.");
+    writeln("  ", Cl_GLV.tGREEN, "SS", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot and save it (defaults to the Pictures folder).", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "SC", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot and save it to the clipboard.", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "N <seconds>", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tYELLOW, " example N : enter n and wait for secend and type a number", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "CN <seconds>", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot after N seconds and save it to the clipboard.", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tYELLOW, "example CN : enter cn and wait for secend and type a number", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "SW", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a screenshot of the active window.", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "SR", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a screenshot of a selected region.", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "H", Cl_GLV.tRESET, Cl_GLV.tYELLOW, " or ", Cl_GLV.tGREEN, "Help", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Show this help menu.", Cl_GLV.tRESET);
+    writeln("  ", Cl_GLV.tGREEN, "exit", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Exit the program.", Cl_GLV.tRESET);
 }
