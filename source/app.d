@@ -131,7 +131,7 @@ void main()
                 }
                 case "exit":
                 {
-                    writeln("Exiting program.");
+                    writeln(Cl_GLV.tRED , "Exiting program." , Cl_GLV.tRESET);
                     break;
                 }
                 default:
