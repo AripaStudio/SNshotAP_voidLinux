@@ -335,6 +335,7 @@ class CLManagerPackage
                         case "e":
                         {
                             exit(1); // Exit the program
+                            
                         }
                         case "d":
                         {
@@ -358,6 +359,7 @@ class CLManagerPackage
                     }
                     if(loopExited) break; // Exit the while loop if installation was attempted
                 }
+                break;
             }
             default:
             {
