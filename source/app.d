@@ -2,10 +2,10 @@ module app;
 
 import std.stdio;
 import std.string;
-import core.stdc.stdlib;
-import CL_manager;
-import CL_GLV;
-import std.conv;
+import core.stdc.stdlib; 
+import CL_manager; 
+import CL_GLV; 
+import std.conv; 
 
 
 /**
@@ -20,12 +20,10 @@ import std.conv;
  */
 
 
-
-
 class importedClass
 {
-    public CLManagerPackage mng_package;
-    public CLManagerScreenShot mng_SnShot;
+    public CLManagerPackage mng_package; // Package manager instance
+    public CLManagerScreenShot mng_SnShot; // Screenshot manager instance
 
     this()
     {
@@ -42,83 +40,80 @@ class importedClass
 
 void main()
 {
-    auto importedS = new importedClass();
-    auto _mng_package_result = importedS.Manage_package();
+    auto importedS = new importedClass(); 
+    auto _mng_package_result = importedS.Manage_package(); 
+
     if (_mng_package_result)
     {
-        Help_menu();
+        Help_menu(); 
         while (true)
         {
-            stdout.write("Enter command: ");
-            string rawInput = readln(); // Read the line
-            string strippedInput = rawInput.strip(); // Strip whitespace
-            string input = std.string.toLower(strippedInput); // Convert to lowercase
+            stdout.write(Cl_GLV.tYELLOW ~ "Enter command: " ~ Cl_GLV.tRESET);
+            string rawInput = readln(); // Read the user input
+            string strippedInput = rawInput.strip(); // Remove leading/trailing whitespace
+            string input = std.string.toLower(strippedInput); // Convert to lowercase for case-insensitive comparison
+
             switch (input)
             {
                 case "ss":
                 {
                     importedS.mng_SnShot.ScreenshotSS();
-                    writeln("Screenshot saved to the Pictures folder.");
+                    writeln(Cl_GLV.tGREEN ~ "Screenshot saved to the Pictures folder." ~ Cl_GLV.tRESET);
                     break;
                 }
                 case "sc":
                 {
                     importedS.mng_SnShot.ScreenshotSC();
-                    writeln("Screenshot saved to the clipboard.");
+                    writeln(Cl_GLV.tGREEN ~ "Screenshot saved to the clipboard." ~ Cl_GLV.tRESET);
                     break;
                 }
                 case "n":
                 {
-                    writeln("Please Enter a Number For Timer Screenshot ");
+                    writeln(Cl_GLV.tYELLOW ~ "Please Enter a Number For Timer Screenshot (in seconds):" ~ Cl_GLV.tRESET);
                     string inputN = readln().strip();
                         try
                         {
                             int n = to!int(inputN);
                             importedS.mng_SnShot.ScreenshotTimeN(n);
-                            writeln("Screenshot taken after "~to!string(n)~" seconds and saved to the Pictures folder.");
+                            writeln(Cl_GLV.tGREEN ~ "Screenshot taken after "~to!string(n)~" seconds and saved to the Pictures folder." ~ Cl_GLV.tRESET);
                         }
                         catch (Exception e)
                         {
-                            writeln("Invalid timer value: " ~ inputN);
-                            writeln("Please enter n and enter a number <n>");
+                            writeln(Cl_GLV.tRED ~ "Invalid timer value: " ~ inputN ~ ". " ~ e.msg ~ Cl_GLV.tRESET);
+                            writeln(Cl_GLV.tYELLOW ~ "Please enter 'n' and then a valid number." ~ Cl_GLV.tRESET);
                         }
-                    
                     break;
                 }
                 case "cn":
                 {
-                    writeln("Please Enter a Number For Timer Screenshot ");
+                    writeln(Cl_GLV.tYELLOW ~ "Please Enter a Number For Timer Screenshot (in seconds):" ~ Cl_GLV.tRESET);
                     string inputN = readln().strip();
                         try
                         {
                             int n = to!int(inputN);
                             importedS.mng_SnShot.ScreenshotTimeCN(n);
-                            writeln( "Screenshot taken after "~to!string(n)~"seconds and saved to the clipboard.");
+                            writeln(Cl_GLV.tGREEN ~ "Screenshot taken after "~to!string(n)~" seconds and saved to the clipboard." ~ Cl_GLV.tRESET);
                         }
                         catch (Exception e)
                         {
-                            writeln("Invalid timer value: " ~ inputN);
-                            writeln("Please enter n and enter a number <n>");
-                        }                     
+                            writeln(Cl_GLV.tRED ~ "Invalid timer value: " ~ inputN ~ ". " ~ e.msg ~ Cl_GLV.tRESET);
+                            writeln(Cl_GLV.tYELLOW ~ "Please enter 'cn' and then a valid number." ~ Cl_GLV.tRESET);
+                        }
                     break;
                 }
                 case "sw":
                 {
                     importedS.mng_SnShot.ScreenshotSW();
-                    writeln("Taking screenshot of the active window (you might be prompted to save).");
+                    writeln(Cl_GLV.tGREEN ~ "Attempting to take screenshot of the active window (you might be prompted to save)." ~ Cl_GLV.tRESET);
                     break;
                 }
                 case "sr":
                 {
                     importedS.mng_SnShot.ScreenshotSR();
-                    writeln("Select the region to screenshot (you might be prompted to save).");
+                    writeln(Cl_GLV.tGREEN ~ "Please select the region to screenshot (you might be prompted to save)." ~ Cl_GLV.tRESET);
                     break;
                 }
                 case "h":
-                {
-                    Help_menu();
-                    break;
-                }
                 case "help":
                 {
                     Help_menu();
@@ -127,44 +122,45 @@ void main()
                 case "g":
                 {
                     importedS.mng_SnShot.OpenScreenshotGui();
+                    writeln(Cl_GLV.tGREEN ~ "Opening xfce4-screenshooter GUI." ~ Cl_GLV.tRESET);
                     break;
                 }
                 case "exit":
                 {
-                    writeln(Cl_GLV.tRED , "Exiting program." , Cl_GLV.tRESET);
-                    break;
+                    writeln(Cl_GLV.tRED ~ "Exiting program." ~ Cl_GLV.tRESET);
+                    break; // This break exits the switch, then the if (input == "exit") breaks the while loop
                 }
                 default:
                 {
-                    writeln("Unknown command. Type 'H' or 'Help' for available commands.");
+                    writeln(Cl_GLV.tRED ~ "Unknown command. Type 'H' or 'Help' for available commands." ~ Cl_GLV.tRESET);
                 }
             }
-            if (input == "exit") break;
+            if (input == "exit") break; // Exit the main loop if command is "exit"
         }
     }
     else
     {
-        writeln("Package manager initialization failed.");
+        writeln(Cl_GLV.tRED ~ "Package manager initialization failed. Program cannot run without XFCE or xfce4-screenshooter." ~ Cl_GLV.tRESET);
     }
 }
 
 void Help_menu()
 {
-     writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.2)");
+    writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.2)");
     writeln(Cl_GLV.tMAGENTA, "This software uses the MIT license.");
-    writeln("Aripa Studio (Khashayar Mobasheri)");
-    writeln("", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tMAGENTA, "Aripa Studio (Khashayar Mobasheri)");
+    writeln("", Cl_GLV.tRESET); 
     writeln(Cl_GLV.tYELLOW, "Commands:");
-    writeln("If you want Open GUI xfce-screenshooter ?");
-    writeln("you can type for this : ", Cl_GLV.tGREEN, "G", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tYELLOW, "If you want to Open GUI xfce-screenshooter?");
+    writeln(Cl_GLV.tYELLOW, "you can type for this : ", Cl_GLV.tGREEN, "G", Cl_GLV.tRESET);
     writeln("");
-    writeln("other Commands : ");
+    writeln(Cl_GLV.tYELLOW, "Other Commands : ");
     writeln("  ", Cl_GLV.tGREEN, "SS", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot and save it (defaults to the Pictures folder).", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "SC", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot and save it to the clipboard.", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "N <seconds>", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot after N seconds (replace <N> with the number of seconds).", Cl_GLV.tRESET);
-    writeln(Cl_GLV.tYELLOW, " example N : enter n and wait for secend and type a number", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tYELLOW, "    Example: enter 'n' and then type a number like '5' for 5 seconds.", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "CN <seconds>", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a full-screen screenshot after N seconds and save it to the clipboard.", Cl_GLV.tRESET);
-    writeln(Cl_GLV.tYELLOW, "example CN : enter cn and wait for secend and type a number", Cl_GLV.tRESET);
+    writeln(Cl_GLV.tYELLOW, "    Example: enter 'cn' and then type a number like '5' for 5 seconds.", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "SW", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a screenshot of the active window.", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "SR", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Take a screenshot of a selected region.", Cl_GLV.tRESET);
     writeln("  ", Cl_GLV.tGREEN, "H", Cl_GLV.tRESET, Cl_GLV.tYELLOW, " or ", Cl_GLV.tGREEN, "Help", Cl_GLV.tRESET, Cl_GLV.tYELLOW, ": Show this help menu.", Cl_GLV.tRESET);

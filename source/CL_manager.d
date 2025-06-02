@@ -1,20 +1,22 @@
 module CL_manager;
 
-
 import std.stdio;
-import CL_executeShell;
+import CL_executeShell; 
 import std.string;
-import core.stdc.stdlib;
-import std.conv;
+import CL_GLV;
+import core.stdc.stdlib; 
+import std.conv; 
 
 class CLManagerScreenShot
 {
+    CL_executeShell_manager executeShell; 
 
-    CL_executeShell_manager executeShell;
     this()
     {
         executeShell = new CL_executeShell_manager();
     }
+
+    // Opens the graphical user interface of xfce4-screenshooter
     public void OpenScreenshotGui()
     {
         auto command = "xfce4-screenshooter";
@@ -26,164 +28,179 @@ class CLManagerScreenShot
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error opening screenshot GUI: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error opening screenshot GUI: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
+            // No specific output expected for success, as it typically opens a GUI
         }
         catch(Exception ex)
         {
-            writeln("Error opening screenshot GUI: ", ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error opening screenshot GUI: " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
 
+    // Takes a full-screen screenshot and saves it to the default location (e.g., Pictures folder)
     public void ScreenshotSS()
     {
         auto command = "xfce4-screenshooter -f";
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success, as it typically opens a GUI
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
 
+    // Takes a full-screen screenshot and saves it to the clipboard
     public void ScreenshotSC()
     {
         auto command = "xfce4-screenshooter -c";
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
 
+    // Takes a full-screen screenshot after N seconds and saves it
     public void ScreenshotTimeN(int N)
     {
-        auto command = "xfce4-screenshooter -d "~to!string(N)~" -f"; 
         if(N <= 0)
         {
-            writeln("Input is Empth ");
-            writeln("<N> = 1S in Default");
+            writeln(Cl_GLV.tYELLOW ~ "Input is Empty or invalid. Setting N to 1 second." ~ Cl_GLV.tRESET);
+            writeln(Cl_GLV.tYELLOW ~ "<N> = 1S in Default" ~ Cl_GLV.tRESET);
             N = 1;
         }
+        auto command = "xfce4-screenshooter -d "~to!string(N)~" -f";
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
 
+    // Takes a full-screen screenshot after N seconds and saves it to the clipboard
     public void ScreenshotTimeCN(int N)
     {
-        auto command = "xfce4-screenshooter -d "~to!string(N)~" -c"; 
         if(N <= 0)
         {
-            writeln("Input is Empth ");
-            writeln("<N> = 1S in Default");
+            writeln(Cl_GLV.tYELLOW ~ "Input is Empty or invalid. Setting N to 1 second." ~ Cl_GLV.tRESET);
+            writeln(Cl_GLV.tYELLOW ~ "<N> = 1S in Default" ~ Cl_GLV.tRESET);
             N = 1;
         }
+        auto command = "xfce4-screenshooter -d "~to!string(N)~" -c";
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
 
+    // Takes a screenshot of the active window
     public void ScreenshotSW()
     {
-        auto command = "xfce4-screenshooter -w -s";
+        auto command = "xfce4-screenshooter -w -s"; // -s is often used for saving, -w for active window
         try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
+
+    // Takes a screenshot of a selected region
     public void ScreenshotSR()
     {
-        auto command = "xfce4-screenshooter -r -s";
-         try
+        auto command = "xfce4-screenshooter -r -s"; // -r for region, -s for saving
+        try
         {
             auto result = executeShell.executeShellCommand(command);
-            auto exitCode = to!int(result[0]); 
+            auto exitCode = to!int(result[0]);
             auto output = result[1];
             auto errorOutput = result[2];
             if(exitCode != 0)
             {
-                writefln("Error checking for Screenshot: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for Screenshot: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return;
             }
-        }catch(Exception ex)
+            // No specific output expected for success
+        }
+        catch(Exception ex)
         {
-            writeln("Error : ScreenShot " , ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error : ScreenShot " ~ ex.msg ~ Cl_GLV.tRESET);
         }
     }
-
-
-
-
-    
-
-    
 }
 
+// Class to manage XFCE and package related checks
 class CLManagerPackage
 {
+    CL_executeShell_manager executeShell; // Instance of the shell execution manager
 
-    CL_executeShell_manager executeShell;
     this()
     {
         executeShell = new CL_executeShell_manager();
     }
 
+    // Checks if XFCE is running
     public bool check_Xfce()
     {
         try
@@ -196,31 +213,31 @@ class CLManagerPackage
 
             if(exitCode != 0)
             {
-                writefln("Error checking for XFCE: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for XFCE: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return false;
             }
             if(output.empty)
             {
-                writeln("It seems you are not using XFCE.");
+                writeln(Cl_GLV.tYELLOW ~ "It seems you are not using XFCE." ~ Cl_GLV.tRESET);
                 return false;
             }
 
-            writeln("You are using XFCE.");
+            writeln(Cl_GLV.tGREEN ~ "You are using XFCE." ~ Cl_GLV.tRESET);
             return true;
-
-
-
-        }catch(Exception ex)
+        }
+        catch(Exception ex)
         {
-             writeln("Error in checking XFCE: %s", ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error in checking XFCE: %s" ~ ex.msg ~ Cl_GLV.tRESET);
             return false;
         }
     }
 
-     public string check_package_xfce_screenshooter()
+    // Checks if xfce4-screenshooter package is installed
+    public string check_package_xfce_screenshooter()
     {
         try
         {
+            // Assuming xbps-query is the package manager command for Void Linux
             auto command = "xbps-query -s xfce4-screenshooter";
             auto result = executeShell.executeShellCommand(command);
             auto exitCode = to!int(result[0]);
@@ -229,16 +246,16 @@ class CLManagerPackage
 
             if (exitCode != 0)
             {
-                writefln("Error checking for xfce4-screenshooter: %s", errorOutput);
+                writefln(Cl_GLV.tRED ~ "Error checking for xfce4-screenshooter: %s" ~ Cl_GLV.tRESET, errorOutput);
                 return "Error";
             }
             if (output.empty)
             {
-                writeln("The 'xfce4-screenshooter' package is not installed.");
-                writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
+                writeln(Cl_GLV.tYELLOW ~ "The 'xfce4-screenshooter' package is not installed." ~ Cl_GLV.tRESET);
+                writeln(Cl_GLV.tYELLOW ~ "To use this software, you need to install it. Do you want to install it? (Y/n)" ~ Cl_GLV.tRESET);
                 while (true)
                 {
-                   string rawInput = readln(); // Read the line
+                    string rawInput = readln(); // Read the line
                     string strippedInput = rawInput.strip(); // Strip whitespace
                     string input = std.string.toLower(strippedInput); // Convert to lowercase
                     if (input == "y")
@@ -251,27 +268,29 @@ class CLManagerPackage
                     }
                     else if (input == "help")
                     {
-                        writeln("The 'xfce4-screenshooter' package is not installed.");
-                        writeln("To use this software, you need to install it. Do you want to install it? (Y/n)");
+                        writeln(Cl_GLV.tYELLOW ~ "The 'xfce4-screenshooter' package is not installed." ~ Cl_GLV.tRESET);
+                        writeln(Cl_GLV.tYELLOW ~ "To use this software, you need to install it. Do you want to install it? (Y/n)" ~ Cl_GLV.tRESET);
                     }
                     else
                     {
-                        writeln("Please enter 'y' for install or 'n' for exit. For help, type 'help'.");
+                        writeln(Cl_GLV.tYELLOW ~ "Please enter 'y' for install or 'n' for exit. For help, type 'help'." ~ Cl_GLV.tRESET);
                     }
                 }
             }
             else
             {
+                writeln(Cl_GLV.tGREEN ~ "'xfce4-screenshooter' package is found." ~ Cl_GLV.tRESET);
                 return "found";
             }
         }
         catch (Exception ex)
         {
-            writeln("Error in checking package: %s", ex.msg);
+            writeln(Cl_GLV.tRED ~ "Error in checking package: %s" ~ ex.msg ~ Cl_GLV.tRESET);
             return "Error";
         }
     }
 
+    // Installs the xfce4-screenshooter package if not found
     public void install_package_xfce_screenshooter()
     {
         auto check_package = check_package_xfce_screenshooter();
@@ -279,31 +298,32 @@ class CLManagerPackage
         {
             case "Error":
             {
-                writeln("An error occurred while checking the package.");
+                writeln(Cl_GLV.tRED ~ "An error occurred while checking the package." ~ Cl_GLV.tRESET);
                 break;
             }
             case "found":
             {
+                // Package is already found, no action needed
                 break;
             }
             case "Install":
             {
-                writeln("Starting installation of xfce4-screenshooter...");
+                writeln(Cl_GLV.tYELLOW ~ "Starting installation of xfce4-screenshooter..." ~ Cl_GLV.tRESET);
                 try
                 {
-                    executeShell.installPackage("xfce4-screenshooter");
-                    writeln("xfce4-screenshooter installed successfully.");
+                    executeShell.installPackage("xfce4-screenshooter"); // Assuming this method exists
+                    writeln(Cl_GLV.tGREEN ~ "xfce4-screenshooter installed successfully." ~ Cl_GLV.tRESET);
                 }
                 catch (Exception ex)
                 {
-                    writeln("Error installing package: %s", ex.msg);
+                    writeln(Cl_GLV.tRED ~ "Error installing package: %s" ~ ex.msg ~ Cl_GLV.tRESET);
                 }
                 break;
             }
             case "exit":
             {
-                writeln("To use this program, 'xfce4-screenshooter' is required.");
-                writeln("Are you sure you want to exit? (e/d)");
+                writeln(Cl_GLV.tYELLOW ~ "To use this program, 'xfce4-screenshooter' is required." ~ Cl_GLV.tRESET);
+                writeln(Cl_GLV.tYELLOW ~ "Are you sure you want to exit? (e/d)" ~ Cl_GLV.tRESET);
                 bool loopExited = false;
                 while (true)
                 {
@@ -314,38 +334,39 @@ class CLManagerPackage
                     {
                         case "e":
                         {
-                            exit(1);
+                            exit(1); // Exit the program
                         }
                         case "d":
                         {
-                            writeln("Starting installation of xfce4-screenshooter...");
+                            writeln(Cl_GLV.tYELLOW ~ "Starting installation of xfce4-screenshooter..." ~ Cl_GLV.tRESET);
                             try
                             {
                                 executeShell.installPackage("xfce4-screenshooter");
-                                writeln("xfce4-screenshooter installed successfully.");
-                                loopExited = true;
+                                writeln(Cl_GLV.tGREEN ~ "xfce4-screenshooter installed successfully." ~ Cl_GLV.tRESET);
+                                loopExited = true; // Set flag to exit loop
                             }
                             catch (Exception ex)
                             {
-                                writeln("Error installing package: %s", ex.msg);
+                                writeln(Cl_GLV.tRED ~ "Error installing package: %s" ~ ex.msg ~ Cl_GLV.tRESET);
                             }
-                            break;
+                            break; // Exit switch, then check loopExited
                         }
                         default:
                         {
-                            writeln("Please enter 'e' to exit or 'd' to download.");
+                            writeln(Cl_GLV.tYELLOW ~ "Please enter 'e' to exit or 'd' to download." ~ Cl_GLV.tRESET);
                         }
-                        if(loopExited) break;
                     }
+                    if(loopExited) break; // Exit the while loop if installation was attempted
                 }
             }
             default:
             {
-                writeln("Unknown status.");
+                writeln(Cl_GLV.tRED ~ "Unknown status from package check." ~ Cl_GLV.tRESET);
             }
         }
     }
 
+    // Manages XFCE and xfce4-screenshooter package presence
     public bool Manage_package()
     {
         auto check_xfce = check_Xfce();
@@ -356,9 +377,8 @@ class CLManagerPackage
         }
         else
         {
-            writeln("This program requires XFCE to run.");
+            writeln(Cl_GLV.tYELLOW ~ "This program requires XFCE to run." ~ Cl_GLV.tRESET);
             return false;
         }
     }
-
 }
