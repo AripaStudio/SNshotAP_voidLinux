@@ -151,7 +151,7 @@ void main()
 void Help_menu()
 {
      writeln(Cl_GLV.tCYAN, "Welcome to my Program (V1.0.1)");
-    writeln(Cl_GLV.tYELLOW, "This software uses the MIT license.");
+    writeln(Cl_GLV.tMAGENTA, "This software uses the MIT license.");
     writeln("Aripa Studio (Khashayar Mobasheri)");
     writeln("", Cl_GLV.tRESET);
     writeln(Cl_GLV.tYELLOW, "Commands:");
