@@ -90,7 +90,7 @@ void main()
                     string inputN = readln().strip();
                         try
                         {
-                            int n = to!int(timeStr);
+                            int n = to!int(inputN);
                             importedS.mng_SnShot.ScreenshotTimeCN(n);
                             writeln( "Screenshot taken after "~to!string(n)~"seconds and saved to the clipboard.");
                         }
