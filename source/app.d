@@ -17,10 +17,7 @@ import std.conv;
  end V1.0.0 at : 2025-5-31;
  */
 
-
- //  دارای کار نکردن بعضی از بخش ها 
- // باید رفع کنم 
- // بریم استراحت خخ
+// berim baray rafe kara haha
 
 
 class importedClass
